@@ -9,7 +9,7 @@ const app = firebase.initializeApp(firebaseConfig);
 export const auth = app.auth();
 export const db = app.firestore();
 
-export const register=  async(name, email, password){
+export const register=  async(name, email, password)=>{
     const newUser = await auth.createUserWithEmailAndPassword(email, password);
 
     return newUser.user.updateProfile({
