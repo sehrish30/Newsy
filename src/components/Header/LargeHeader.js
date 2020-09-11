@@ -8,7 +8,8 @@ const LargeHeader = ({title}) => {
              color="primary"
              style={{
                  background: "#30475e",
-                 color: "#cbaf87"
+                 color: "#cbaf87",
+                 fontFamily: 'Teko, sans-serif',
              }}
              >
                 <IonTitle size="large">{title}</IonTitle>

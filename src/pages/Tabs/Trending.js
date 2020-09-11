@@ -7,7 +7,7 @@ const Trending = () => {
     return (
         <IonPage>
            <SmallHeader title="Trending"/>
-           <IonContent fullscreen>
+           <IonContent color="secondary" fullscreen>
                <LargeHeader title="Trending"/>
            </IonContent>
         </IonPage>

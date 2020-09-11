@@ -7,7 +7,7 @@ const Search = () => {
     return (
         <IonPage>
            <SmallHeader title="Search"/>
-           <IonContent fullscreen>
+           <IonContent color="secondary" fullscreen>
                <LargeHeader title="Search"/>
            </IonContent>
         </IonPage>

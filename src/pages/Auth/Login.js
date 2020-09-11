@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   IonPage,
   IonContent,
@@ -9,25 +9,56 @@ import {
   IonCol,
   IonButton,
   IonRouterLink,
+  IonLoading
 } from "@ionic/react";
 import NavHeader from "../../components/Header/NavHeader";
+import useForm from '../../hooks/useForm';
+import {logIn} from '../../firebase/firebase'
+import  {toast} from "../../helpers/toast";
+import validateLogin from '../../validators/validateLogin'
 
-const Login = () => {
+const INITIAL_STATE= {
+  email: "",
+  password: ""
+}
+
+const Login = (props) => {
+
+
+const [busy, setBusy] = useState(false);
+
+const authenticateUser =async ()=>{
+   setBusy(true);
+   const {email, password} = values;
+   try{
+    await logIn(email, password);
+    toast("You have logged in successfully");
+    props.history.push("/");
+   }catch(err){
+     console.error("Authentication Error", err);
+     toast(err.message);
+   }
+   setBusy(false);
+}
+
+const {handleSubmit, handleChange, values,  isSubmitting, } = useForm(INITIAL_STATE, validateLogin, authenticateUser)
+
   return (
-    <IonPage>
+    <IonPage c>
       <NavHeader title="Log In" />
-      <IonContent>
-        <IonItem lines="full">
-          <IonLabel color="secondary" position="floating">Email</IonLabel>
-          <IonInput name="email" type="text" required></IonInput>
+        <IonLoading message={"Please wait..."} isOpen={busy} />
+      <IonContent color="secondary">
+        <IonItem lines="full" color="secondary">
+          <IonLabel color="tertiary" position="floating">Email</IonLabel>
+          <IonInput value={values.email} onIonChange={handleChange} name="email" type="text" required></IonInput>
         </IonItem>
         <IonItem lines="full">
-          <IonLabel color="secondary" position="floating">Password</IonLabel>
-          <IonInput name="password" type="password" required></IonInput>
+          <IonLabel color="tertiary" position="floating">Password</IonLabel>
+          <IonInput value={values.password} onIonChange={handleChange} name="password" type="password" required></IonInput>
         </IonItem>
         <IonRow>
           <IonCol>
-            <IonButton type="submit" color="primary" expand="block">
+            <IonButton type="submit" color="primary" expand="block" onClick={handleSubmit} disabled={isSubmitting}>
               Log In
             </IonButton>
           </IonCol>

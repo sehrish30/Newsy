@@ -7,7 +7,7 @@ const Submit = () => {
     return (
         <IonPage>
            <SmallHeader title="Submit"/>
-           <IonContent fullscreen>
+           <IonContent color="secondary" fullscreen>
                <LargeHeader title="Submit"/>
            </IonContent>
         </IonPage>

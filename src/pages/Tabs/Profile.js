@@ -7,7 +7,7 @@ const Profile = () => {
     return (
         <IonPage>
            <SmallHeader title="Profile"/>
-           <IonContent fullscreen>
+           <IonContent color="secondary" fullscreen>
                <LargeHeader title="Profile"/>
            </IonContent>
         </IonPage>
