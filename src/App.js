@@ -40,6 +40,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import './css/styles.css';
 
 const App = () => {
   const [user, setUser] = useAuth();

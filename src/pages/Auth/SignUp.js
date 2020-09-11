@@ -38,7 +38,7 @@ const SignUp = (props) => {
             <NavHeader title="Sign Up"/>
             <IonLoading message={"Please wait..."} isOpen={busy} />
             <IonContent color="secondary">
-                <IonItem lines="full">
+                <IonItem lines="full" color="medium">
                    <IonLabel position="floating" color="tertiary">Username</IonLabel>
                    <IonInput
                    value= {values.name}
@@ -49,7 +49,7 @@ const SignUp = (props) => {
                    >
                    </IonInput>
                 </IonItem>
-                <IonItem lines="full">
+                <IonItem lines="full" color="medium">
                    <IonLabel position="floating" color="tertiary">Email</IonLabel>
                    <IonInput
                    value= {values.email}
@@ -60,8 +60,8 @@ const SignUp = (props) => {
                    >
                   </IonInput>
                 </IonItem>  
-                <IonItem lines="full">
-                   <IonLabel position="floating">Password</IonLabel>
+                <IonItem lines="full" color="medium">
+                   <IonLabel color="tertiary" position="floating">Password</IonLabel>
                    <IonInput
                    value= {values.password}
                    name="password"

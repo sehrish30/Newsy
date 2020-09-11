@@ -44,9 +44,9 @@ const handlePasswordReset = async () =>{
     <IonPage>
       <NavHeader title="Password Reset" />
       <IonLoading message={"Please wait..."} isOpen={busy} />
-      <IonContent>
-        <IonItem lines="full">
-          <IonLabel color="secondary" position="floating">Email</IonLabel>
+      <IonContent color="secondary">
+        <IonItem lines="full" color="medium">
+          <IonLabel color="tertiary"  position="floating">Email</IonLabel>
           <IonInput value={values.email} onIonChange={handleChange} name="email" type="text" required></IonInput>
         </IonItem>
        

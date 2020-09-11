@@ -16,6 +16,7 @@ import useForm from '../../hooks/useForm';
 import {logIn} from '../../firebase/firebase'
 import  {toast} from "../../helpers/toast";
 import validateLogin from '../../validators/validateLogin'
+import '../../css/styles.css';
 
 const INITIAL_STATE= {
   email: "",
@@ -44,19 +45,19 @@ const authenticateUser =async ()=>{
 const {handleSubmit, handleChange, values,  isSubmitting, } = useForm(INITIAL_STATE, validateLogin, authenticateUser)
 
   return (
-    <IonPage c>
+    <IonPage>
       <NavHeader title="Log In" />
         <IonLoading message={"Please wait..."} isOpen={busy} />
-      <IonContent color="secondary">
-        <IonItem lines="full" color="secondary">
+      <IonContent  color="secondary">
+        <IonItem lines="full" color="medium">
           <IonLabel color="tertiary" position="floating">Email</IonLabel>
           <IonInput value={values.email} onIonChange={handleChange} name="email" type="text" required></IonInput>
         </IonItem>
-        <IonItem lines="full">
+        <IonItem lines="full" color="medium">
           <IonLabel color="tertiary" position="floating">Password</IonLabel>
           <IonInput value={values.password} onIonChange={handleChange} name="password" type="password" required></IonInput>
         </IonItem>
-        <IonRow>
+        <IonRow >
           <IonCol>
             <IonButton type="submit" color="primary" expand="block" onClick={handleSubmit} disabled={isSubmitting}>
               Log In
