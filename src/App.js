@@ -51,7 +51,6 @@ const App = () => {
     <UserContext.Provider value={{user, setUser}}>
       <IonTabs>
         <IonRouterOutlet>
-
             <Route
               path="/"
               render={()=> <Redirect to="/news"/>}

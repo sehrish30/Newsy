@@ -5,9 +5,10 @@ import "firebase/firestore";
 import firebaseConfig from "./config";
 
 //Returns an instance of firebase Application
-const app = firebase.initializeApp(firebaseConfig);
+export const app = firebase.initializeApp(firebaseConfig);
 export const auth = app.auth();
-export const db = app.firestore();
+// const db = app.firestore();
+const db =firebase.firestore()
 
 export const register=  async(name, email, password)=>{
     const newUser = await auth.createUserWithEmailAndPassword(email, password);
@@ -15,6 +16,13 @@ export const register=  async(name, email, password)=>{
     return newUser.user.updateProfile({
         displayName: name
     })
+}
+
+export const checking = (email, password) =>{
+    return firebase.auth.EmailAuthProvider.credential(
+      email,
+      password
+    );
 }
 
 export const logIn=(email, password)=>{
@@ -28,6 +36,9 @@ export const logOut = ()=>{
 export const resetPassword=(email) => {
     return auth.sendPasswordResetEmail(email);
 }
+
+export const dbLinksRef = db.collection('links');
+
 
 
 // class Firebase {
