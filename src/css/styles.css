@@ -9,6 +9,10 @@
     vertical-align: middle; 
 }
 
+.bg{
+    background-color: black;
+}
+
 /* style={{
     verticalAlign: 'middle'
 }} */
