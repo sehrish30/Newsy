@@ -1,3 +1,20 @@
-.padding-top{
-    padding-top: 30px;
+.link{
+        align-items: center;
+        font-size: 0.8rem;
+        font-weight: normal;
+        color: orange
 }
+
+.align-middle{
+    vertical-align: middle; 
+}
+
+/* style={{
+    verticalAlign: 'middle'
+}} */
+/* 
+style={{
+    alignItems: "center",
+    fontSize: "0.8rem",
+    fontWeight: "normal"
+}} */
