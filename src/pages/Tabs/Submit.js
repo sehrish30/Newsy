@@ -4,7 +4,6 @@ import SmallHeader from '../../components/Header/SmallHeader';
 import LargeHeader from '../../components/Header/LargeHeader';
 import UserContext from "../../contexts/UserContext";
 import useForm from "../../hooks/useForm";
-import {useHistory} from 'react-router-dom';
 import {dbLinksRef} from "../../firebase/firebase";
 import validateCreateLink from "../../validators/validateCreateLink"
 
@@ -16,12 +15,10 @@ const INITIAL_STATE = {
 
 
 const Submit = (props) => {
-    // let history = useHistory();
     const {user} = useContext(UserContext);
 
    const handleCreateLink = async ()=>{
-     if(!user){
-        // history.push("/login");   
+     if(!user){ 
       props.history.push('/login');
      }else{
        const {url, description} = values;
@@ -51,8 +48,8 @@ const Submit = (props) => {
            <SmallHeader title="Submit"/>
            <IonContent color="secondary" fullscreen>
                <LargeHeader title="Submit"/>
-               <IonItem lines="full">
-                  <IonLabel position="floating">Description</IonLabel>
+               <IonItem lines="full" color="medium">
+                  <IonLabel color="tertiary" position="floating">Description</IonLabel>
                   <IonInput
                   name="description"
                   value={values.description}
@@ -61,8 +58,8 @@ const Submit = (props) => {
                   required
                   />
                </IonItem>
-               <IonItem lines="full">
-                  <IonLabel position="floating">URL</IonLabel>
+               <IonItem lines="full" color="medium">
+                  <IonLabel color="tertiary" position="floating">URL</IonLabel>
                   <IonInput
                   name="url"
                   value={values.url}
