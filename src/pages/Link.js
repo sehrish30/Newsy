@@ -7,14 +7,54 @@ import NavHeader from '../components/Header/NavHeader';
 import { closeCircleOutline } from 'ionicons/icons';
 import LinkItem from '../components/Link/LinkItem';
 
+import CommentModal from '../components/Link/CommentModal';
+import LinkComment from '../components/Link/LinkComment';
+
 const {Browser} = Plugins;
 
 const Link = (props) => {
   
     const {user} = useContext(UserContext);
     const [link, setLink] = useState(null);
+    const [showModal, setShowModal] = useState(false);
     const linkId = props.match.params.linkId;
     const linkRef = dbLinksRef.doc(linkId);
+
+    const hanldeOpenModal =() => {
+        if(!user){
+          props.history.push('/login');
+        }else{
+            setShowModal(true);
+        }
+    }
+
+    const handleCloseModal = () =>{
+        setShowModal(false);
+    }
+
+    const handleAddComment = (commentText) => {
+        if(!user){
+            props.history.push("/login");
+        }else{
+            linkRef.get().then((doc) =>{
+                if(doc.exists){
+                    const previousComments = doc.data().comments;
+                    const newComment = {
+                        postedBy : {id: user.uid, name: user.displayName},
+                        created: Date.now(),
+                        text: commentText
+                    };
+                    const updatedComments = [...previousComments, newComment];
+                    linkRef.update({comments: updatedComments});
+                    setLink((prevState)=> ({
+                        ...prevState,
+                        comments: updatedComments
+                    }))
+                }
+            });
+            setShowModal(false);
+        }
+    }
 
     const getLink = useCallback(() =>{
         linkRef.get().then((doc) => {
@@ -83,6 +123,12 @@ const Link = (props) => {
             action ={handleDeleteLink}
              />
              <IonContent color="light">
+             <CommentModal
+              isOpen= {showModal}
+              title="New Comment"
+              sendAction={handleAddComment}
+              closeAction={handleCloseModal}
+              />
              {link && (
                  <>
                      <IonGrid>
@@ -90,9 +136,20 @@ const Link = (props) => {
                              <IonCol class="ion-text-center">
                                  <LinkItem  link={link} browser= {openBrowser}/>
                                  <IonButton onClick={() => handleAddVote()} size="small" >UpVote</IonButton>
+                                 <IonButton onClick={() => hanldeOpenModal()} size="small" fill="outline">
+                                   Comment
+                                 </IonButton>
                              </IonCol>
                          </IonRow>
                      </IonGrid>
+                     {link.comments.map((comment, index)=>(
+                         <LinkComment
+                          key={index}
+                          comment={comment}
+                          link={link}
+                          setLink={setLink}
+                          />
+                     ))}
                  </>
              )}
              
