@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import {
   IonModal,
   IonHeader,
@@ -23,7 +23,7 @@ const CommentModal = ({ isOpen, title, sendAction, closeAction, comment }) => {
   }
 
   const handleChange =event =>{
-       console.log(event.target.value)
+      //  console.log(event.target.value)
        const {value}= event.target; 
        setCommentText(value);
    }

@@ -17,8 +17,8 @@ const Link = (props) => {
     const {user} = useContext(UserContext);
     const [link, setLink] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    const linkId = props.match.params.linkId;
-    const linkRef = dbLinksRef.doc(linkId);
+    let linkId = props.match.params.linkId;
+    let linkRef = dbLinksRef.doc(linkId);
 
     const hanldeOpenModal =() => {
         if(!user){
@@ -62,10 +62,12 @@ const Link = (props) => {
         })
     },[linkRef])
 
+
     useEffect(()=>{
          //Check when link is mounted get data of news
          getLink();
-    },[linkId, getLink]);
+      
+    },[linkId]);
 
     const postedByAuthUser =(link)=>{
         return user?.uid === link.postedBy.id;
