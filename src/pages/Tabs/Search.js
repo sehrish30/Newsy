@@ -54,13 +54,16 @@ const Search = () => {
            <SmallHeader title="Search"/>
            <IonContent color="secondary" fullscreen>
                <LargeHeader title="Search"/>
-               <IonSearchbar
+               <IonSearchbar color="warning"
                placeholder="Search"
                sellcheck="false"
                type="url"
             //    value={filter}
                onKeyDown = {handleChange}
                animated
+               style={{
+                   borderRadius: '50px'
+               }}
                 />
              {filteredLinks.map((filteredLink, index) => (
                  <LinkItem
