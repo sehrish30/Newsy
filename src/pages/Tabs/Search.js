@@ -62,7 +62,7 @@ const Search = () => {
                onKeyDown = {handleChange}
                animated
                style={{
-                   borderRadius: '50px'
+                   borderRadius: '10px'
                }}
                 />
              {filteredLinks.map((filteredLink, index) => (
